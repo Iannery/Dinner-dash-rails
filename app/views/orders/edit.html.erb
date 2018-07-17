@@ -1,0 +1,33 @@
+<h1>Editar Pedido</h1>
+
+<%= form_for @order do |form| %>
+	
+	<p>
+		<%= form.label :Número %><br>
+		<%= form.text_field :title, :readonly => true %>
+	</p>
+
+	<p>
+		<%= form.label :Data %><br>
+		<%= form.text_area :text, :readonly => true %>
+	</p>
+
+	<p>
+		<%= form.label :Usuário %><br>
+		<%= form.text_area :user, :readonly => true%> <br>
+	</p>
+
+	<p>
+		<%= form.label :Status %><br>
+		
+	</p>
+
+	<p>
+		<%= form.label :Preço Total %><br>
+		<%= form.file_field :price %>
+	</p>
+
+	<p>
+		<%= form.submit :Atualizar %>
+	</p>
+<% end %>

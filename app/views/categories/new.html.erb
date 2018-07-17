@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag "main"%>
+<% if current_user.try(:admin?) %>
+	<div class='imgbackoffice'>
+<%else%>
+	<div class='imgingredients'>
+<%end%>
+    <div class='d-flex justify-content-between upper-toolbar'>
+        <h3 class='title'> dinnerdash Boladíssimo </h1>
+		<div>
+        <%if user_signed_in?%>
+            <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'whitetext'%>
+            <%= link_to 'Sair', destroy_user_session_path,
+            method: :delete, data:{ confirm: "Deseja sair?"} , :class => 'whitetext'%>
+        <%else%>
+            <%= link_to 'Log-in/Sign-in', new_user_session_path, :class => 'whitetext'%>
+        <%end%>
+        </div>
+    </div>
+	<% if current_user.try(:admin?) %>
+        <div class='whitetext text'>
+			<div class='textbig'>
+			Backoffice
+			</div>
+			<h3>Gerencie seu site.</h3>
+		</div>
+	<%else%>
+        <div class='whitetext text'>
+			<div class='textbig'>
+			Menu de categorias
+			</div>
+			<h3>Visualize todas as categorias de refeições.</h3>
+		</div>
+    <%end%>
+    <%if user_signed_in?%>
+        <h2 class='text whitetext space-for-toolbar'>Bem vindo <%= current_user.nome %>!!</h2>
+    <%else%>
+        <h2 class='text whitetext space-for-toolbar'>
+        Você ainda não pode finalizar o seu pedido boladíssimo! 
+        Faça login para continuar.
+        </h3>
+    <%end%>
+</div>
+<div class='d-flex justify-content-start lower-toolbar'>
+    <%= link_to "Menu principal", root_path,:class => 'whitetext toolbar-items-spacing'%>
+    <%= link_to "Categorias", categories_path, :class => 'whitetext toolbar-items-spacing'%>
+</div>
+<h1 class='text greytext'> Criando Categoria </h1>
+<div class="d-flex justify-content-start text">
+<%= form_for @category do |f| %>
+      <div class="form-group">
+            <%= f.label :nome, :class => 'greytext'%></br>
+            <%= f.text_field :name, :class => "form-control"%>
+            <%= f.submit 'Salvar', :class => 'btn btn-success btn-block'%>
+      </div>
+<% end %>
+</div>

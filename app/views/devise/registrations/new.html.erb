@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag "login"%>
+<%= devise_error_messages! %>
+<div class="d-flex justify-content-between">  
+  <%= render "shared/logintoolbar" %>
+  <div class='signup-pad-pattern'>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <h2 class='title'>dinnerdash</h2>
+      
+      <div class="form-group">
+        <%= f.label :nome, :class => 'text-black-50'%></br>
+        <%= f.text_field :nome, :class => "form-control" ,autocomplete: "nome", autofocus: true%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, :class => 'text-black-50'%><br />
+        <%= f.email_field :email, :class => "form-control" , :placeholder => "email@provedor.com" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :Senha, :class => 'text-black-50' %>
+        <% if @minimum_password_length %>
+        <em class='text-black-50' > (No mínimo <%= @minimum_password_length %> caracteres)</em>
+        <% end %><br />
+        <%= f.password_field :password, :class => 'form-control', autocomplete: "off" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :Confirmaçao_de_senha, :class => 'text-black-50' %><br />
+        <%= f.password_field :password_confirmation, :class => 'form-control', autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Criar conta", :class => "btn btn-success btn-block" %>
+      </div>
+      <div class='text-black-50 boldline'>
+      _______________________________
+      </div>
+      <%= render "devise/shared/links" %>
+  <% end %>
+  </div>
+</div>

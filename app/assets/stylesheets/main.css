@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "Circular Book";
+    src: url(/assets/CircularStd-Book.woff) format("woff");
+}
+.imgbackoffice{
+    background-image: url('helloquence.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.imgindex{
+    background-position-y: 15%;
+    background-image: url('jay-wen.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.col-md-3{
+    padding: 2%;
+    margin: 3%;
+    border: 3px solid rgb(153, 153, 153);
+}
+.padright{
+    padding-right: 5%;
+}
+.imgingredients{
+    background-position-y: 15%;
+    background-image: url('elli-o.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.title{
+    padding: 5px;
+    font-family: "Amaranth", sans-serif;
+    color: white;
+}
+.whitetext{
+    padding:    5px;
+    font-family: 'Circular Book', sans-serif;
+    color: white;
+}
+.greytext{
+    padding:    5px;
+    font-family: 'Circular Book', sans-serif;
+    color: #353535;
+}
+.text{
+    padding-left:   5%;
+}
+.space-for-toolbar{
+    padding-bottom: 2%;
+    margin-bottom:  0%;
+}
+.lower-toolbar{
+    padding:        .8%;
+    padding-left:   5%;
+    background-color: #3d3d3d;
+    margin-bottom: 1%;
+}
+.toolbar-items-spacing{
+    padding-right:  15px;
+    padding-left:   15px;
+}
+.textbig{
+    font-size: 7em;
+}
+.upper-toolbar{
+    padding-top:    2%;
+    padding-left:   5%;
+    padding-right:  3%;   
+    padding-bottom: 7%;
+}

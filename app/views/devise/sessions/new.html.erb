@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag "login"%>
+<div class="d-flex justify-content-between">
+
+<%= render "shared/logintoolbar" %>
+  <div class='signin-pad-pattern'>  
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|%>    
+    <h2 class= 'title'>dinnerdash</h2>
+    <div class="form-group">
+      <%= f.label :email, :class => 'text-black-50'%><br />
+      <%= f.email_field :email, :class => "form-control" , autofocus: true, :placeholder => "email@provedor.com" %>
+    </div>
+
+
+    <div class="form-group">
+      <%= f.label :senha, :class => 'text-black-50' %><br />
+      <%= f.password_field :password, :class => "form-control" ,  autocomplete: "off" %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="form-check">
+        <%= f.check_box :remember_me, :class => "form-check-input"%>
+        <%= f.label :manter_conectado, :class => "form-check-label text-black-50" %>
+      </div>
+        
+    <% end -%>
+
+    <div class="actions">
+      <%= f.submit "Entrar" , :class => "btn btn-success btn-block"%>
+    </div>
+    <div class='text-black-50 boldline'>
+    _______________________________
+    </div>
+
+    <%= render "devise/shared/links" %>
+  <% end %>
+  </div>
+</div>

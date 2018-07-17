@@ -1,0 +1,85 @@
+<%= stylesheet_link_tag "main"%>
+<% if current_user.try(:admin?) %>
+	<div class='imgbackoffice'>
+<%else%>
+	<div class='imgindex'>
+<%end%>
+    <div class='d-flex justify-content-between upper-toolbar'>
+        <h3 class='title'> dinnerdash Boladíssimo </h1>
+		<div>
+        <%if user_signed_in?%>
+            <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'whitetext'%>
+			<%= link_to 'Sair', destroy_user_session_path,
+            method: :delete, data:{ confirm: "Deseja sair?"} , :class => 'whitetext'%>
+        <%else%>
+            <%= link_to 'Log-in/Sign-in', new_user_session_path, :class => 'whitetext'%>
+        <%end%>
+        </div>
+    </div>
+	<% if current_user.try(:admin?) %>
+        <div class='whitetext text'>
+			<div class='textbig'>
+			Backoffice
+			</div>
+			<h3>Gerencie seu site.</h3>
+		</div>
+		
+	<%else%>
+        <div class='whitetext text'>
+			<div class='textbig'>
+			Menu Principal
+			</div>
+			<h3>Escolha sua refeição.</h3>
+		</div>
+    <%end%>
+    <%if user_signed_in?%>
+        <h2 class='text whitetext space-for-toolbar'>Bem vindo <%= current_user.nome %>!!</h2>
+    <%else%>
+        <h2 class='text whitetext space-for-toolbar'>
+        Você ainda não pode finalizar o seu pedido boladíssimo! 
+        Faça login para continuar.
+        </h3>
+    <%end%>
+</div>
+
+<div class='d-flex justify-content-start lower-toolbar'>
+    <%= link_to "Categorias", categories_path, :class => 'whitetext toolbar-items-spacing'%>
+    <%= link_to "Refeições", meals_path, :class => 'whitetext toolbar-items-spacing'%>
+    <%if user_signed_in?%>	
+		<%= link_to "Pedidos", orders_path, :class => 'whitetext toolbar-items-spacing'%>
+	<%end%>
+</div>
+<h2 class='text greytext'>
+	Escolha sua refeição
+</h2>
+<% @categories = Category.all %>
+<div class='container'>
+	<% @categories.each do |category| %>
+        <h3 class='text greytext'><%= category.name %></h3>
+	<div class='row'>
+	<% category.meals.each do |meal|%>
+		<%if meal.available || current_user.try(:admin?) %>	
+			<div class='col-md-3 rounded'>
+			<div class='d-flex flex-column col text greytext'>
+				<div class='form-group'><%= image_tag meal.image_url, class:'img-fluid' %></div>
+				<div class='form-group align-self-center'><%= meal.title %></div>
+				<div class='form-group'><%= meal.text.first(28) %>...</div>
+				<div class='form-group align-self-center'>R$ <%= meal.price %>0</div>
+				<div class='form-group align-self-center'>
+					<%= link_to 'Mostrar', meal_path(meal), class:'btn btn-primary'%>
+					<% if current_user.try(:admin?) %>				
+						<%= link_to 'Excluir', meal_path(meal), method: :delete, data: {confirm: 'Tem certeza?'}, class:'btn btn-danger' %>
+					<%end%>
+				</div>
+				<%if meal.available %>
+					<div class='form-group align-self-center'> Disponível!</div>
+				<%else%>
+					<div class='form-group align-self-center'> Não Disponível.</div>
+				<%end%>
+			</div>
+			</div>
+		<%end%>
+    <% end %>
+	</div>
+	<% end %>
+</div>

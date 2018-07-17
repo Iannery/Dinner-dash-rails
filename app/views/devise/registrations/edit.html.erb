@@ -1,0 +1,60 @@
+<%= stylesheet_link_tag "login"%>
+<%= devise_error_messages! %>
+
+<div class="d-flex justify-content-end">
+  <%= render "shared/logintoolbar" %>
+  <div class='edit-pad-pattern'>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <h2 class= 'title'>dinnerdash</h2>
+
+      <div class="form-group">
+        <%= f.label :nome, :class => 'text-black-50'%>
+        <%= f.text_field :nome,:class => 'form-control' , autofocus: true,  autocomplete: "nome" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, :class => 'text-black-50'%>
+        <%= f.email_field :email,:class => 'form-control', autocomplete: "email" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :senha, :class => 'text-black-50' %>
+        <%= f.password_field :password,:class => 'form-control', autocomplete: "off" %>
+        <% if @minimum_password_length %>
+          <em class = 'text-black-50'>Mínimo de <%= @minimum_password_length %> caracteres</em>
+        <% end %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :confirmar_senha, :class => 'text-black-50' %><br />
+        <%= f.password_field :password_confirmation,:class => 'form-control', autocomplete: "off" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :senha_atual, :class => 'text-black-50' %> <br />
+        <%= f.password_field :current_password,:class => 'form-control', autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Atualizar", :class => 'btn btn-success btn-block' %>
+      </div>
+      <div class='text-black-50 boldline'>
+      _______________________________
+      </div>
+      <% end %>
+
+      <div class='form-group'>  
+        <p class = 'text-black-50'>Deletar minha conta</p>
+        <%= button_to "Deletar conta", registration_path(resource_name), :class =>'btn btn-outline-success btn-block' ,data: { confirm: "Tem certeza?" }, method: :delete %>
+        <div class='text-black-50 boldline'>
+          ___________________________
+        </div>
+        <%= link_to "Voltar" ,:back,:class => 'btn btn-outline-success btn-block' %>
+      </div>
+    
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<%= stylesheet_link_tag "main"%>
+<% if current_user.try(:admin?) %>
+	<div class='imgbackoffice'>
+<%else%>
+	<div class='imgindex'>
+<%end%>
+    <div class='d-flex justify-content-between upper-toolbar'>
+        <h3 class='title'> dinnerdash Boladíssimo </h1>
+		<div>
+        <%if user_signed_in?%>
+            <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'whitetext'%>
+			<%= link_to 'Sair', destroy_user_session_path,
+            method: :delete, data:{ confirm: "Deseja sair?"} , :class => 'whitetext'%>
+        <%else%>
+            <%= link_to 'Log-in/Sign-in', new_user_session_path, :class => 'whitetext'%>
+        <%end%>
+        </div>
+    </div>
+    <div class='whitetext text'>
+        <div class='textbig'>
+        Pedidos
+        </div>
+        <h3>Crie novos pedidos!</h3>
+    </div>
+    <%if user_signed_in?%>
+        <h2 class='text whitetext space-for-toolbar'>Bem vindo <%= current_user.nome %>!!</h2>
+    <%end%>
+</div>
+
+<div class='d-flex justify-content-start lower-toolbar'>
+    <%= link_to "Categorias", categories_path, :class => 'whitetext toolbar-items-spacing'%>
+    <%= link_to "Refeições", meals_path, :class => 'whitetext toolbar-items-spacing'%>
+    <%= link_to "Pedidos", orders_path, :class => 'whitetext toolbar-items-spacing'%>
+</div>
+
+<h1 class='text greytext'>Novo Pedido</h1>
+<div class='d-flex justify-content-start text'>
+    <h2 class='text greytext'> WIP </h2>
+</div>
+<%#
+<% @meals = Meal.all %>
+
+	<% @categories = Category.all %>
+<%= form_with scope: :orders, url: orders_path, local: true do |form| %>
+		
+<div class='d-flex justify-content-start text'>
+    <% @categories.each do |category| %>
+
+        <div class='form-group'>
+            <%= form.collection_select :order , Meal.order(:id), :id, :title, {prompt:true}, {class:'form-control'}%>
+        </div>
+    <% end %>
+</div>
+<% end %>
+
+
+

@@ -1,0 +1,44 @@
+<%= stylesheet_link_tag "main"%>
+<% if current_user.try(:admin?) %>
+	<div class='imgbackoffice'>
+<%else%>
+	<div class='imgindex'>
+<%end%>
+    <div class='d-flex justify-content-between upper-toolbar'>
+        <h3 class='title'> dinnerdash Boladíssimo </h1>
+		<div>
+        <%if user_signed_in?%>
+            <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'whitetext'%>
+			<%= link_to 'Sair', destroy_user_session_path,
+            method: :delete, data:{ confirm: "Deseja sair?"} , :class => 'whitetext'%>
+        <%else%>
+            <%= link_to 'Log-in/Sign-in', new_user_session_path, :class => 'whitetext'%>
+        <%end%>
+        </div>
+    </div>
+    <div class='whitetext text'>
+        <div class='textbig'>
+        Pedidos
+        </div>
+        <h3>Olhe seus pedidos anteriores!</h3>
+    </div>
+    <%if user_signed_in?%>
+        <h2 class='text whitetext space-for-toolbar'>Bem vindo <%= current_user.nome %>!!</h2>
+    <%end%>
+</div>
+
+<div class='d-flex justify-content-start lower-toolbar'>
+    <%= link_to "Categorias", categories_path, :class => 'whitetext toolbar-items-spacing'%>
+    <%= link_to "Refeições", meals_path, :class => 'whitetext toolbar-items-spacing'%>
+    <%= link_to "Novo pedido", new_order_path, :class => 'whitetext toolbar-items-spacing'%>
+</div>
+
+<h1 class='text greytext'>Lista de Pedidos</h1>
+<table class='d-flex justify-content-center table table-hover'>
+    <tr>
+        <th>Id</th>
+        <th>Preço</th>
+        <th>Situação</th>
+    </tr>
+    <h2 class='text greytext'> WIP </h2>
+</table>

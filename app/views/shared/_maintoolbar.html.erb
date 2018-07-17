@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "main"%>
+<div class='imgbackoffice'>
+    <div class='d-flex justify-content-between upper-toolbar'>
+        <h3 class='title'> dinnerdash Boladíssimo </h1>
+        <div>
+        <%if user_signed_in?%>
+            <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'whitetext'%>
+            <%= link_to 'Sair', destroy_user_session_path,
+            method: :delete, data:{ confirm: "Deseja sair?"} , :class => 'whitetext'%>
+        <%else%>
+            <%= link_to 'Log-in/Sign-in', new_user_session_path, :class => 'whitetext'%>
+        <%end%>
+        </div>
+    </div>
+
+    <%if user_signed_in?%>
+        <h2 class='text whitetext space-for-toolbar'>Bem vindo <%= current_user.nome %>!!</h2>
+    <%else%>
+        <h2 class='text whitetext space-for-toolbar'>
+        Você ainda não pode finalizar o seu pedido boladíssimo! 
+        Faça login para continuar.
+        </h3>
+    <%end%>
+</div>

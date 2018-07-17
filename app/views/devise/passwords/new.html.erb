@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "login"%>
+<%= devise_error_messages! %>
+<div class="d-flex justify-content-end">
+  <%= render "shared/logintoolbar" %>
+  <div class='fyp-pad-pattern'>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <h2 class='title'>dinnerdash</h2>
+      <h4 class='text-black-50'>Esqueceu sua senha?</h2>
+
+      <div class="form-group">
+        <%= f.label :email,  :class => 'text-black-50' %><br />
+        <%= f.email_field :email,  :class => 'form-control', autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Enviar", :class => "btn btn-success btn-block" %>
+      </div>
+      <div class='text-black-50 boldline'>
+      _______________________________
+      </div>
+      <%= render "devise/shared/links" %>
+    <% end %>
+  </div>
+</div>
